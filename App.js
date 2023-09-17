@@ -23,19 +23,33 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement("div", 
-{id:"parent"},
-[React.createElement("div", {id:"child"}, [
-    React.createElement("h1",{}, "I am an h1 tag"),
-    React.createElement("h1",{}, "I am an h1 second tag")
-]),
-React.createElement("div", {id:"child2"}, [
-    React.createElement("h1",{}, "I am an h1 tag"),
-    React.createElement("h1",{}, "I am an h1 second tag")
-])]
-);
+const heading = React.createElement("h1", {id:"heading"}, "Hellow world");
 
-console.log(parent);
+console.log(heading);
+
+//transpiled before it reaches JS engine -PARCEL - BABEL
+
+//JSX => Babel transpiles it to React.createElement() => ReactElement-JS Object => HTMLElement(render)
+//React Element
+const jsxHeading = <h1 className="heading" tabIndex="5">Hello World using jsx</h1>
+const elem = <span>React Element</span>
+
+const Title = () => {
+    return <h1>React Title</h1>
+}
+
+//React Functional Component: A normal javascript function which returns jsx
+const HeadingComponent = () => (
+    <div>
+        <Title/>
+        {Title()}
+        {elem}
+        <h1>React Functional Component</h1>
+    </div>
+)
+
+
+console.log(jsxHeading);
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(parent);
+// root.render(jsxHeading);
+root.render(<HeadingComponent/>)
